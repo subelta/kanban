@@ -1,27 +1,105 @@
 body {
-    
-    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    /* font-size: 0.85rem; */
+    font-size: 13px;
+    line-height: 19px;
+
+    margin: 0;    
 }
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+
+    padding: none;
+    outline: none;
+    background-color: #DFE3E6;
+    border-radius: 3px;
+    color: #6B808C;
+    border: none;
+}
+
+button::before {
+    content: url(icons/plus.svg);
+    position: relative;
+    top: 3px;
+    right: 8px;
+}
+
+button:hover {
+    background-color: #bfc8cf;
+}
+
 main {
     display: flex;
-    background: url("img/sea-stars.jpg") no-repeat;
+    align-items: flex-start;
+    background: url("img/sea-stars.jpg") no-repeat; 
     background-size: cover;
-    /* background-size: auto 100%; */
-    position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0; 
+    position: absolute;
+    padding: 21px 0 14px 30px;
+    /* max-height: 100vh; */
 }
 
 .column {
-    background-color: lightgray;
-    width: 300px;
-    margin: 10px;
+    /* position: relative; */
+    background-color: #DFE3E6;
+    width: 272px;
+    overflow: auto; 
+    max-height: 100%;
+    margin: 0 6px;
+    border-radius: 3px;
+    /* box-sizing: border-box; */
+}
+
+.column-header {
+    font-size: 0.85rem;
+    margin: 8px 12px;
+    /* position: fixed; */
+    /* background-color: #DFE3E6; */
+}
+
+.cards-list {
+    list-style: none;
+    padding: 0;
+    margin: 13px 0 0;
+    overflow: auto; 
+    max-height: 100%;
+}
+
+.card {
+    background-color: white;
+    padding: 8px 12px;
+    margin: 8px 12px 0;
+    box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+    border-radius: 3px;
+}
+
+.card:first-child {
+    margin-top: 0;
+}
+
+.card:last-child {
+    margin-bottom: 3px;
+}
+
+
+.add-card {
+    padding: 5px 28px 5px 10px;
+    margin: 5px 10px;
+    /* position: fixed; */
+    /* bottom: 0;
+    position: relative; */
 }
 
 .add-column {
-    height: 50px;
-    width: 300px;
-    margin: 10px;
+    width: 272px;
+    height: 43px;
+    margin: 0px 6px;
+    padding-left: 20px;
+    text-align: left;
 }
