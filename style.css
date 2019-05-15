@@ -1,0 +1,27 @@
+body {
+    
+    margin: 0;
+}
+main {
+    display: flex;
+    background: url("img/sea-stars.jpg") no-repeat;
+    background-size: cover;
+    /* background-size: auto 100%; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0; 
+}
+
+.column {
+    background-color: lightgray;
+    width: 300px;
+    margin: 10px;
+}
+
+.add-column {
+    height: 50px;
+    width: 300px;
+    margin: 10px;
+}
