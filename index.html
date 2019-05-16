@@ -11,7 +11,9 @@
 <body>
     <main>
         <article class="column">
-            <h1 class="column-header">План на месяц</h1>
+            <header>
+                <h1 class="column-header">План на месяц</h1>
+            </header>
             <ul class="cards-list">
                 <li class="card">Пройти курс по React</li>
                 <li class="card">Отметить День Рождения</li>
@@ -22,29 +24,30 @@
                 <li class="card">НАписать первую статью в блог</li>
                 <li class="card">НАписать первую статью в блог</li>
                 <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
-                <li class="card">НАписать первую статью в блог</li>
             </ul>
-            <button class="add-card">Добавить еще одну карточку</button>
+            <footer>
+                <section class="controls">
+                    <button class="add-card">Добавить еще одну карточку</button>
+                </section>
+            </footer>
         </article>
         <article class="column">
-            <h1 class="column-header">План на день</h1>
+            <header>
+                <h1 class="column-header">План на день</h1>
+            </header>
             <ul class="cards-list">
                 <li class="card">Записаться на курс по React</li>
                 <li class="card">Забронировать тир на субботу</li>
                 <li class="card">накидать тем для статей в блог</li>
             </ul>
-            <button class="add-card">Добавить еще одну карточку</button>
+            <footer>
+                <textarea name="card-content" class="input-card" ></textarea>
+                <section class="controls">
+                    <button class="confirm-adding">Добавить карточку</button>
+                    <span class="discard-adding"></span>
+                    <!-- <button class="add-card">Добавить еще одну карточку</button> -->
+                </section>
+            </footer>
         </article>
         <button class="add-column">Добавить еще одну колонку</button>
     </main>

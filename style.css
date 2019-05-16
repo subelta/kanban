@@ -7,30 +7,6 @@ body {
     margin: 0;    
 }
 
-button {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    line-height: 19px;
-
-    padding: none;
-    outline: none;
-    background-color: #DFE3E6;
-    border-radius: 3px;
-    color: #6B808C;
-    border: none;
-}
-
-button::before {
-    content: url(icons/plus.svg);
-    position: relative;
-    top: 3px;
-    right: 8px;
-}
-
-button:hover {
-    background-color: #bfc8cf;
-}
-
 main {
     display: flex;
     align-items: flex-start;
@@ -41,40 +17,46 @@ main {
     top: 0;
     bottom: 0; 
     position: absolute;
-    padding: 21px 0 14px 30px;
+    padding: 21px 0 30px 14px;
     /* max-height: 100vh; */
 }
 
 .column {
-    /* position: relative; */
     background-color: #DFE3E6;
     width: 272px;
-    overflow: auto; 
     max-height: 100%;
     margin: 0 6px;
     border-radius: 3px;
-    /* box-sizing: border-box; */
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
 }
 
 .column-header {
     font-size: 0.85rem;
-    margin: 8px 12px;
-    /* position: fixed; */
+    margin: 8px 12px 13px;
     /* background-color: #DFE3E6; */
 }
 
 .cards-list {
     list-style: none;
-    padding: 0;
-    margin: 13px 0 0;
+    padding: 0 12px;
+    margin: 0;
     overflow: auto; 
-    max-height: 100%;
+    /* overflow-y: scroll; */
+    scrollbar-width: none; /* для Firefox */
+    -ms-overflow-style: none; /* для IE 10+ */
+}
+
+.cards-list::-webkit-scrollbar { /* для WebKit */
+    width: 0;
+    height: 0;
 }
 
 .card {
     background-color: white;
     padding: 8px 12px;
-    margin: 8px 12px 0;
+    margin-top: 8px;
     box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
     border-radius: 3px;
 }
@@ -87,13 +69,78 @@ main {
     margin-bottom: 3px;
 }
 
+footer {
+    padding: 5px  12px;
+}
+
+.add-card,
+.add-column {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+
+    padding: none;
+    outline: none;
+    background-color: #DFE3E6;
+    border-radius: 3px;
+    color: #6B808C;
+    border: none;
+}
+
+.add-card::before, 
+.add-column::before {
+    content: url(icons/plus.svg);
+    position: relative;
+    top: 3px;
+    right: 8px;
+}
+
+.add-card:hover,
+.add-column:hover {
+    background-color: #bfc8cf;
+}
 
 .add-card {
-    padding: 5px 28px 5px 10px;
-    margin: 5px 10px;
-    /* position: fixed; */
-    /* bottom: 0;
-    position: relative; */
+    padding: 5px 28px 5px 8px;
+}
+
+.input-card {
+    font-family: 'Montserrat', sans-serif;
+
+    box-sizing: border-box;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    resize: none;
+    width: 100%;
+    box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 7px;
+}
+
+.confirm-adding {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    
+    padding: 7px 8px 5px;
+    background: #39C071;
+    border-radius: 3px;
+    color: white;
+    border: none;
+}
+
+.discard-adding {
+    content: url(icons/x.svg);
+    align-self: center;
+    padding-right: 4px; 
 }
 
 .add-column {
