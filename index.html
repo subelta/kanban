@@ -51,5 +51,16 @@
         </article>
         <button class="add-column">Добавить еще одну колонку</button>
     </main>
+    <script src="add-elements.js"></script>
+    <script src="drag-n-drop.js"></script>
+    <script>
+        var liDrag = new DragScope(
+            "card", 
+            "cards-list",
+            "column",
+            "card-drop-place",
+            "card-on-drag"
+        );
+    </script>
 </body>
 </html>

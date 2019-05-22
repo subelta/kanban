@@ -57,8 +57,9 @@ main {
     background-color: white;
     padding: 8px 12px;
     margin-top: 8px;
-    box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+    box-shadow: 0px 1px 4px rgba(9, 46, 67, 0.251);
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .card:first-child {
@@ -68,6 +69,17 @@ main {
 .card:last-child {
     margin-bottom: 3px;
 }
+
+.card-on-drag {
+    transform: rotate(5deg);
+    list-style: none;
+}
+
+.card-drop-place {
+    background-color: #C9D2D9;
+    box-shadow: none;
+}
+
 
 footer {
     padding: 5px  12px;
@@ -89,7 +101,8 @@ footer {
 
 .add-card::before, 
 .add-column::before {
-    content: url(icons/plus.svg);
+    /* content: url(icons/plus.svg); */
+    content: "\E901";
     position: relative;
     top: 3px;
     right: 8px;
