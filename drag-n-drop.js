@@ -64,6 +64,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     //перенос объекта при каждом движении мыши
     elemObject.el.style.left = e.pageX - elemObject.shift.x + 'px'; 
     elemObject.el.style.top = e.pageY - elemObject.shift.y + 'px';
+    unFocus();
     return false;
   }
 
@@ -114,12 +115,10 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
-
-  //не addEventListener чтобы не слушались посторонние события, в данном случае выделение текста
-  document.onmousemove = onMouseMove;
-  document.onmouseup = onMouseUp; 
-  document.onmousedown = onMouseDown;
-  document.onmouseover = onMouseOver;
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp); 
+  document.addEventListener("mousedown", onMouseDown);
+  document.addEventListener("mouseover", onMouseOver);
 };
 
 
@@ -143,7 +142,6 @@ function startDrag(elemObject, dragStyleClass) {
   let el = elemObject.el;
   elemObject.oldZindex = el.style.zIndex;
   elemObject.el.style.pointerEvents = 'none';
-
   
   el.style.height = elemObject.height;
   el.style.width = elemObject.width;
@@ -209,3 +207,12 @@ function dropPlaceBefore(target, dropPlace) {
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
+
+//убрать выделение текста
+var unFocus = function () {
+  if (document.selection) {
+    document.selection.empty()
+  } else {
+    window.getSelection().removeAllRanges()
+  }
+} 
