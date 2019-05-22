@@ -31,6 +31,7 @@
                 </section>
             </footer>
         </article>
+
         <article class="column">
             <header>
                 <h1 class="column-header">План на день</h1>
@@ -41,16 +42,47 @@
                 <li class="card">накидать тем для статей в блог</li>
             </ul>
             <footer>
-                <textarea name="card-content" class="input-card" ></textarea>
+                <!-- <textarea 
+                    name="card-content" 
+                    class="input-card" 
+                    placeholder="Введите название карточки"
+                ></textarea> -->
                 <section class="controls">
-                    <button class="confirm-adding">Добавить карточку</button>
+                    <!-- <button class="confirm-adding">Добавить карточку</button>
+                    <span class="discard-adding"></span> -->
+                    <button class="add-card">Добавить еще одну карточку</button>
+                </section>
+            </footer>
+        </article>
+
+        <article class="column">
+            <header>
+                <h1 class="column-header">Итоги</h1>
+            </header>
+            <ul class="cards-list"></ul>
+            <footer>
+                <section class="controls">
+                    <button class="add-card">Добавить еще одну карточку</button>
+                </section>
+            </footer>
+        </article>
+        <article class="column">
+            <footer>
+                <input 
+                    type="text" 
+                    name="column-name" 
+                    class="input-column" 
+                    placeholder="Введите название колонки">
+                </textarea>
+                <section class="controls">
+                    <button class="confirm-adding">Добавить колонку</button>
                     <span class="discard-adding"></span>
-                    <!-- <button class="add-card">Добавить еще одну карточку</button> -->
                 </section>
             </footer>
         </article>
         <button class="add-column">Добавить еще одну колонку</button>
     </main>
+
     <script src="add-elements.js"></script>
     <script src="drag-n-drop.js"></script>
     <script>

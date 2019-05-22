@@ -3,7 +3,7 @@
 // let column = document.querySelector("button");
 
 document.addEventListener("click", function() {
-    alert("clicked");
+    // alert("clicked");
 })
 
 
