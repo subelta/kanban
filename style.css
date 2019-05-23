@@ -34,6 +34,7 @@ main {
 }
 
 .column-header {
+    word-wrap: break-word;
     font-size: 0.85rem;
     margin: 8px 12px 13px;
     /* background-color: #DFE3E6; */
@@ -55,11 +56,14 @@ main {
 }
 
 .card {
+    /* overflow-x: hidden; */
+    word-wrap: break-word;
     background-color: white;
     padding: 8px 12px;
     margin-top: 8px;
     box-shadow: 0px 1px 4px rgba(9, 46, 67, 0.251);
     border-radius: 3px;
+
     cursor: pointer;
 }
 
@@ -129,6 +133,17 @@ button {
     padding: 4px 12px 12px;
 }
 
+.sr-only {
+    border: 0; 
+    clip: rect(0 0 0 0); 
+    height: 1px; 
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
 .input-card,
 .input-column {
     font-family: 'Montserrat', sans-serif;
@@ -147,6 +162,7 @@ button {
 }
 
 .input-card {
+    max-height: 300px;
     resize: none;
     margin-bottom: 4px;
 }
