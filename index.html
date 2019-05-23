@@ -10,6 +10,7 @@
 </head>
 <body>
     <main>
+
         <article class="column">
             <header>
                 <h1 class="column-header">План на месяц</h1>
@@ -25,12 +26,22 @@
                 <li class="card">НАписать первую статью в блог</li>
                 <li class="card">НАписать первую статью в блог</li>
             </ul>
-            <footer>
-                <section class="controls">
-                    <button class="add-card">Добавить еще одну карточку</button>
+            <footer>  
+                <section class="input-section invisible">
+                    <textarea 
+                        class="input-card" 
+                        name="card-content" 
+                        placeholder="Введите название карточки"
+                    ></textarea>
+                    <section class="controls">
+                        <button class="confirm-add-card">Добавить карточку</button>
+                        <span class="discard-add-card"></span>
+                    </section>
                 </section>
+                <button class="add-card">Добавить еще одну карточку</button>
             </footer>
         </article>
+
 
         <article class="column">
             <header>
@@ -42,18 +53,22 @@
                 <li class="card">накидать тем для статей в блог</li>
             </ul>
             <footer>
-                <!-- <textarea 
-                    name="card-content" 
-                    class="input-card" 
-                    placeholder="Введите название карточки"
-                ></textarea> -->
-                <section class="controls">
-                    <!-- <button class="confirm-adding">Добавить карточку</button>
-                    <span class="discard-adding"></span> -->
-                    <button class="add-card">Добавить еще одну карточку</button>
+                <section class="input-section">
+                    <textarea 
+                        class="input-card" 
+                        name="card-content" 
+                        placeholder="Введите название карточки"
+                    ></textarea>
+                    <section class="controls">
+                        <button class="confirm-add-card">Добавить карточку</button>
+                        <span class="discard-add-card"></span>
+                    </section>
                 </section>
+                
+                <button class="add-card invisible">Добавить еще одну карточку</button>
             </footer>
         </article>
+
 
         <article class="column">
             <header>
@@ -61,25 +76,37 @@
             </header>
             <ul class="cards-list"></ul>
             <footer>
-                <section class="controls">
-                    <button class="add-card">Добавить еще одну карточку</button>
+                <section class="input-section invisible">
+                    <textarea 
+                        class="input-card" 
+                        name="card-content" 
+                        placeholder="Введите название карточки"
+                    ></textarea>
+                    <section class="controls">
+                        <button class="confirm-add-card">Добавить карточку</button>
+                        <span class="discard-add-card"></span>
+                    </section>
                 </section>
+                <button class="add-card">Добавить еще одну карточку</button>
             </footer>
         </article>
+
+
         <article class="column">
-            <footer>
+            <section class="input-section">
                 <input 
+                    class="input-column" 
                     type="text" 
                     name="column-name" 
-                    class="input-column" 
                     placeholder="Введите название колонки">
-                </textarea>
                 <section class="controls">
-                    <button class="confirm-adding">Добавить колонку</button>
-                    <span class="discard-adding"></span>
+                    <button class="confirm-add-column">Добавить колонку</button>
+                    <span class="discard-add-column"></span>
                 </section>
-            </footer>
+            </section>
         </article>
+
+
         <button class="add-column">Добавить еще одну колонку</button>
     </main>
 

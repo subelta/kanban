@@ -21,6 +21,7 @@ main {
     /* max-height: 100vh; */
 }
 
+
 .column {
     background-color: #DFE3E6;
     width: 272px;
@@ -81,8 +82,14 @@ main {
 }
 
 
-footer {
-    padding: 5px  12px;
+.controls {
+    display: flex;
+    justify-content: space-between;
+    /* padding-bottom: 7px; */
+}
+
+button {
+    outline: none;
 }
 
 .add-card,
@@ -92,7 +99,6 @@ footer {
     line-height: 19px;
 
     padding: none;
-    outline: none;
     background-color: #DFE3E6;
     border-radius: 3px;
     color: #6B808C;
@@ -113,7 +119,14 @@ footer {
 }
 
 .add-card {
-    padding: 0px 28px 0px 8px;
+    /* padding: 0px 28px 0px 8px; */
+    width: 100%;
+    padding: 6px 20px 12px 0px;
+    margin-top: 3px;
+}
+
+.input-section {
+    padding: 4px 12px 12px;
 }
 
 .input-card,
@@ -142,29 +155,40 @@ footer {
     margin: 7px 0 8px;
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 7px;
-}
 
-.confirm-adding {
+.confirm-add-card,
+.confirm-add-column{
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     line-height: 19px;
     
     padding: 7px 8px 5px;
-    background: #39C071;
+    background-color: #39C071;
     border-radius: 3px;
     color: white;
     border: none;
+    transition: all 0.1s;
 }
 
-.discard-adding {
+.confirm-add-card:hover,
+.confirm-add-column:hover {
+    background-color: #3aaa69;
+}
+
+.discard-add-card,
+.discard-add-column {
     content: url(icons/x.svg);
     align-self: center;
-    padding-right: 4px; 
+    padding: 5px; 
+    transition: all 0.1s;
+}
+
+.discard-add-card:hover,
+.discard-add-column:hover {
+    content: url(icons/x-white.svg);
+    border-radius: 3px;
+    background-color: #ff6c6c;
 }
 
 .add-column {
@@ -175,3 +199,7 @@ footer {
     text-align: left;
 }
 
+
+.invisible {
+    display: none;
+}

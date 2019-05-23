@@ -115,7 +115,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
-  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mouseover", onMouseOver);
@@ -128,10 +128,12 @@ function saveSizes(elemObject) {
   const el = elemObject.el;
   const elStyle = window.getComputedStyle(el);
 
-  elemObject.width = elStyle.getPropertyValue('width');
-  elemObject.height = elStyle.getPropertyValue('height');
-  elemObject.padding = elStyle.getPropertyValue('padding');
-  elemObject.borderWidth = elStyle.getPropertyValue('border-width');
+  elemObject.size = {
+    width: elStyle.getPropertyValue('width'),
+    height: elStyle.getPropertyValue('height'),
+    padding: elStyle.getPropertyValue('padding'),
+    borderWidth: elStyle.getPropertyValue('border-width')
+  }
   
   return elemObject;
 }
@@ -143,8 +145,8 @@ function startDrag(elemObject, dragStyleClass) {
   elemObject.oldZindex = el.style.zIndex;
   elemObject.el.style.pointerEvents = 'none';
   
-  el.style.height = elemObject.height;
-  el.style.width = elemObject.width;
+  el.style.height = elemObject.size.height;
+  el.style.width = elemObject.size.width;
   el.style.zIndex = 9999;
   el.style.position = 'fixed';
   if (dragStyleClass) {
@@ -181,10 +183,13 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
   if (!dropPlace) {
     dropPlace = document.createElement(el.tagName);
     dropPlace.classList.add(highlightClass, dragClass);
-    dropPlace.style.height = elemObject.height;
-    dropPlace.style.width = elemObject.width;
-    dropPlace.style.padding = elemObject.padding;
-    dropPlace.style.borderWidth = elemObject.borderWidth;
+    let drop = dropPlace.style;
+    const size = elemObject.size;
+
+    drop.height = size.height;//рефакторить с for in foo of************************
+    drop.width = size.width;
+    drop.padding = size.padding;
+    drop.borderWidth = size.borderWidth;
   }
   elemObject.el.parentElement.insertBefore(dropPlace, elemObject.el);
   return dropPlace;
@@ -192,7 +197,7 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
 
 
 function dropPlaceBefore(target, dropPlace) {
-  let prev = target.previousSibling;
+  let prev = target.previousSibling;//проверить с previousElementSibling *******************************
   while (prev) {
     if(prev == dropPlace) {
       return true;
@@ -207,6 +212,7 @@ function dropPlaceBefore(target, dropPlace) {
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
+
 
 //убрать выделение текста
 var unFocus = function () {
