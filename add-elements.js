@@ -38,15 +38,13 @@ document.addEventListener("keydown", e => {
     const inputsCl = ["input-card", "input-column"];
     const buttonsCl = [".confirm-add-card", ".confirm-add-column"];
 
-
     if (e.keyCode !== 13) { 
         return;
     }
 
-    e.preventDefault();
-
     const t = e.target.classList;
     if (t.contains(inputsCl[0]) || t.contains(inputsCl[1])) {
+        e.preventDefault();
         const btns = e.target
                       .parentElement
                       .querySelectorAll(`${ buttonsCl[0] }, ${ buttonsCl[1] }`);

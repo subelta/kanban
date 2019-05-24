@@ -87,34 +87,34 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
   
     if ((!el) || (target == dropPlace)) {
       return;
-    }
-    //
-    
+    }   
 
     if (e.relatedTarget.classList.contains(dragClass)) {
-      // console.log(e.relatedTarget);
-      // console.log("realated target contains dragClass");
       return;
     }
 
     const isSibling = target.classList.contains(dragClass);
-    const extField = target.closest('.' + extDropFieldClass)
-                   
+    const extField = target.closest('.' + extDropFieldClass);
+
     if (isSibling) {
       if(dropPlaceBefore(target, dropPlace)) {
         insertAfter(dropPlace, target);
       } else {
         target.parentElement.insertBefore(dropPlace, target);        
       }
-      // console.log("inserted");
-    } else if (extField) {
-      let dropZone = extField.querySelector("." + dropFieldClass) ||
-                     extField;
-      dropZone.appendChild(dropPlace);
+      return false;
+    } 
+
+    if (extField) {  
+      const dropZone = findDropZone(extField, dropFieldClass);
+      if (dropZone) {
+        dropZone.appendChild(dropPlace);
+      }
     }
     return false;
   }
 
+  
   document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
@@ -197,20 +197,29 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
 
 
 function dropPlaceBefore(target, dropPlace) {
-  let prev = target.previousSibling;//проверить с previousElementSibling *******************************
+  let prev = target.previousElementSibling;
   while (prev) {
     if(prev == dropPlace) {
       return true;
     }
-    prev = prev.previousSibling;
+    prev = prev.previousElementSibling;
   }
   return false;
 }
 
 
+function findDropZone(extField, dropFieldClass) {
+  let inside = extField.querySelector("." + dropFieldClass);
+  let isEqual = extField.classList.contains(dropFieldClass); 
+
+  const dropZone = inside ? inside :
+                   isEqual ? extField : null;
+  return dropZone;
+}
+
 
 function insertAfter(elem, refElem) {
-  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+  return refElem.parentNode.insertBefore(elem, refElem.nextElementSibling);
 }
 
 
