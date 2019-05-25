@@ -114,80 +114,61 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
+
+  function manageScroll(interval, e, currTarg, elemClass, dir) {
+    if (!interval) {
+      if (!e.target.closest("." + elemClass)) {
+        return;
+      };
+      currTarg = e.target.closest("." + elemClass);
+      const hover = scrollArea(e, currTarg, dir);
+    
+      if (hover && elemObject.isDragged) { 
+        console.log(hover);
+        interval = startScroll(interval, currTarg, hover);
+        console.log(interval);
+      }
+      return {interval, currTarg};
+    }
+
+  
+    if (interval) {
+      if (!scrollArea(e, currTarg, dir) || !elemObject.isDragged) {
+        console.log(`targ: ${currTarg.tagName}`);
+        console.log(`area: ${scrollArea(e, currTarg, dir)}`);
+        console.log(`stop: ${interval}`);
+        stopScroll(interval);
+        interval = undefined;
+      }
+      return {interval, currTarg};
+    }
+  }
+
   
   document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mouseover", onMouseOver);
-//************************************************************************************************* */
+  
   let columnInt;
-  let targ;
-  // const testCol = document.querySelector(".column");
+  let target;
+
+  let mainInt;
+  let mainTarg;
 
   document.addEventListener("mousemove", e => {
-    if (!e.target.closest("." + dropFieldClass)) {
-      return;
-    };
-    targ = e.target.closest("." + dropFieldClass);
-    
-    if (columnInt) {
-      return;
+    let colState = manageScroll(columnInt, e, target, dropFieldClass, "y");
+    if (colState) {
+      columnInt = colState.interval;
+      target = colState.currTarg;
     }
 
-    const hover = scrollArea(e, targ, "y");
-    
-    if (hover && elemObject.isDragged) { 
-      console.log(hover);
-      columnInt = startScroll(columnInt, targ, hover);
-      console.log(columnInt);
+    let mainState = manageScroll(mainInt, e, mainTarg, "horiz-scroll", "x");
+    if (mainState) {
+      mainInt = mainState.interval;
+      mainTarg = mainState.currTarg;
     }
   });  
-
-  document.addEventListener("mousemove", e => {
-    if (!columnInt) {
-      return;
-    }
-    if (!scrollArea(e, targ, "y") || !elemObject.isDragged) {
-      stopScroll(columnInt);
-      columnInt = undefined;
-    }
-  });    
-
-
-
-
-  let interval;
-  // const main = document.querySelector(".main");
-
-  document.addEventListener("mousemove", e => {
-    if (!e.target.closest(".horiz-scroll")) {
-      return;
-    };
-    targ = e.target.closest(".horiz-scroll");
-    
-    if (interval) {
-      return;
-    }
-
-    const hover = scrollArea(e, targ, "x");
-    if (hover && elemObject.isDragged) { 
-      interval = startScroll(interval, targ, hover);
-    }
-  });  
-
-  document.addEventListener("mousemove", e => {
-    if (!interval) {
-      return;
-    }
-    if (!scrollArea(e, targ, "x") || !elemObject.isDragged) {
-      stopScroll(interval);
-      interval = undefined;
-    }
-  });  
-
-  
-  
-  //******************************************************************************************************** */
 };
 
 
