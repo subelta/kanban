@@ -86,9 +86,19 @@
     </main>
 
     <script src="add-elements.js"></script>
-    <script src="drag-n-drop.js"></script>
+    <script src="DragScope.js"></script>
+    <script src="ExtendedScope.js"></script>
+    <!-- <script src="drag-n-drop.js"></script> -->
     <script>
-        var liDrag = new DragScope(
+        // var liDrag = new DragScope(
+            // "card", 
+            // "cards-list",
+            // "column",
+            // "card-drop-place",
+            // "card-on-drag"
+        // );
+
+        let dragCards = new ExtendedScope(
             "card", 
             "cards-list",
             "column",

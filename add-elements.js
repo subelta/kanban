@@ -33,7 +33,7 @@ document.addEventListener("input", e => {
 });
 
 
-//Enter для полей ввода
+//Клавиша Enter для полей ввода
 document.addEventListener("keydown", e => {
     const inputsCl = ["input-card", "input-column"];
     const buttonsCl = [".confirm-add-card", ".confirm-add-column"];
@@ -94,6 +94,12 @@ function createCard(clicked, e) {
         card.textContent = cardText;
 
         cardsList.appendChild(card);
+
+        cardsList.scrollTo({
+            left: 0,
+            top: cardsList.scrollHeight,
+            behavior: 'smooth'
+        });
         console.log("card created!");
     }
     inputCard.value = '';
@@ -124,9 +130,15 @@ function addColumnInp(clicked) {
     let column = document.createElement("article");
     column.classList.add("column");
     column.innerHTML = colMarkup;
-    clicked.parentElement
-           .insertBefore(column, clicked);
 
+    const main = clicked.parentElement;
+    main.insertBefore(column, clicked);
+
+    main.scrollTo({
+        left: main.scrollWidth,
+        top: 0,
+        behavior: 'smooth'
+    });
     console.log("column input created");
 }
 
