@@ -119,6 +119,75 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mouseover", onMouseOver);
+//************************************************************************************************* */
+  let columnInt;
+  let targ;
+  // const testCol = document.querySelector(".column");
+
+  document.addEventListener("mousemove", e => {
+    if (!e.target.closest("." + dropFieldClass)) {
+      return;
+    };
+    targ = e.target.closest("." + dropFieldClass);
+    
+    if (columnInt) {
+      return;
+    }
+
+    const hover = scrollArea(e, targ, "y");
+    
+    if (hover && elemObject.isDragged) { 
+      console.log(hover);
+      columnInt = startScroll(columnInt, targ, hover);
+      console.log(columnInt);
+    }
+  });  
+
+  document.addEventListener("mousemove", e => {
+    if (!columnInt) {
+      return;
+    }
+    if (!scrollArea(e, targ, "y") || !elemObject.isDragged) {
+      stopScroll(columnInt);
+      columnInt = undefined;
+    }
+  });    
+
+
+
+
+  let interval;
+  // const main = document.querySelector(".main");
+
+  document.addEventListener("mousemove", e => {
+    if (!e.target.closest(".horiz-scroll")) {
+      return;
+    };
+    targ = e.target.closest(".horiz-scroll");
+    
+    if (interval) {
+      return;
+    }
+
+    const hover = scrollArea(e, targ, "x");
+    if (hover && elemObject.isDragged) { 
+      interval = startScroll(interval, targ, hover);
+    }
+  });  
+
+  document.addEventListener("mousemove", e => {
+    if (!interval) {
+      return;
+    }
+    if (!scrollArea(e, targ, "x") || !elemObject.isDragged) {
+      stopScroll(interval);
+      interval = undefined;
+    }
+  });  
+
+  
+  
+  //******************************************************************************************************** */
 };
 
 
@@ -231,3 +300,91 @@ var unFocus = function () {
     window.getSelection().removeAllRanges()
   }
 } 
+
+//********************************************************************************************************************************************* */
+
+function startScroll(scrollId, scrollScope, dir) {
+  scrollId = window.setInterval(incrementScroll, 20, scrollScope, dir);
+  return scrollId;
+}
+  
+
+function stopScroll(scrollId) {
+  clearInterval(scrollId);
+}
+
+
+function incrementScroll(scrollScope, direction) {
+  switch(direction) {
+    case "left":
+        scrollScope.scrollLeft -= 10;
+        break;
+    case "right":
+        scrollScope.scrollLeft += 10;
+        break;
+    case "up":
+        scrollScope.scrollTop -= 10;
+        break;
+    case "down":
+        scrollScope.scrollTop += 10;
+        break;
+  }
+}
+
+
+function scrollArea(e, el, axis) {
+  let elStyle = window.getComputedStyle(el);
+  const part = 10;
+  
+
+  const coords = {
+    top: el.getBoundingClientRect().top,
+    left: el.getBoundingClientRect().left,
+  }
+
+  let w = elStyle.getPropertyValue("width");
+  let pl = elStyle.getPropertyValue("padding-left");
+  let pr  = elStyle.getPropertyValue("padding-right");
+  let h = elStyle.getPropertyValue("height");
+  let pt = elStyle.getPropertyValue("padding-top");
+  let pb  = elStyle.getPropertyValue("padding-bottom");
+
+  w = +w.substr(0, w.length-2);
+  pl = +pl.substr(0, pl.length-2);
+  pr = +pr.substr(0, pr.length-2);
+  h = +h.substr(0, h.length-2);
+  pt = +pt.substr(0, pt.length-2);
+  pb = +pb.substr(0, pb.length-2);
+  
+  const sumX = w + pl + pr;
+  const sumY = h + pt + pb;
+
+
+  if (axis === "x"){
+
+    if ((coords.left + sumX / part >= e.clientX) && 
+        (coords.left <= e.clientX)) {
+          return "left";
+    } 
+
+    if ((coords.left + (part - 1) * sumX / part <= e.clientX) && 
+        (coords.left + sumX >= e.clientX)) {
+          return "right";
+    } 
+  }
+
+  if (axis === "y") {
+    
+
+    if ((coords.top + sumY / part >= e.clientY) && 
+        (coords.top <= e.clientY)) {
+          return "up";
+    } 
+
+    if ((coords.top + (part - 1) * sumY / part <= e.clientY) && 
+        (coords.top + sumY >= e.clientY)) {
+          return "down";
+    } 
+  }
+  return false;
+}
