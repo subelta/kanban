@@ -3,7 +3,9 @@
 const MAXLEN_CARD_INPUT = 2000;
 const MAXLEN_HEADER_INPUT = 500;
 const DEFAULT_INPUT_CARD_HEIGHT = "48px";
-var tabIsActive = false;
+let state = {
+    tabIsActive: false,
+}
 
 document.addEventListener("click", e => {
     let clicked = e.target;
@@ -22,7 +24,7 @@ document.addEventListener("click", e => {
         }
     }
 
-    if (tabIsActive) {
+    if (state.tabIsActive) {
         disableTab();
     }
 });
@@ -60,6 +62,9 @@ function turnOnCardInput(clicked) {
 
     inputCardForm.classList.remove("invisible");
     clicked.classList.add("invisible");
+
+    inputCardForm.querySelector(".input-card").focus();
+    inputCardForm.querySelector(".input-card").select();
     console.log("card input now visible");
 }
 
@@ -104,6 +109,9 @@ function createCard(clicked, e) {
 
 
 function addColumnInp(clicked) {
+    const addColBtn = document.querySelector(".add-column");
+    addColBtn.style.display = "none";
+
     let id = generateId("inp-col-head-");
     const colMarkup = `
         <form class="input-card-form">
@@ -129,23 +137,32 @@ function addColumnInp(clicked) {
     column.classList.add("column");
     column.innerHTML = colMarkup;
 
-    const main = clicked.parentElement;
+    const main = document.querySelector("main");
     main.insertBefore(column, clicked);
 
     scrollIn(main, "right");
+    column.querySelector("input").focus();
+    column.querySelector("input").select();
     console.log("column input created");
 }
 
 
+
 function deleteColumnInp(clicked, e) {
+    const addColBtn = document.querySelector(".add-column");
     e.preventDefault();
     
     clicked.parentElement
            .parentElement
            .parentElement
            .remove();
+           
+    const main = document.querySelector("main");
+    main.appendChild(addColBtn);
+    addColBtn.style.display = "block";
     console.log("column input deleted");
 }
+
 
 
 function generateColumn(clicked, e) {
@@ -193,6 +210,7 @@ function generateColumn(clicked, e) {
     `
 
     column.innerHTML = fullColMarkup;
+    addColumnInp();
     console.log("column markup generated");
 }
 
@@ -217,7 +235,7 @@ function handleTabKey() {
     const elements = document.querySelectorAll('button, input, textarea');
 
     elements.forEach(el => el.classList.add('tab-is-active'))
-    tabIsActive = true;
+    state.tabIsActive = true;
 }
 
 
@@ -225,8 +243,9 @@ function disableTab() {
     const elements = document.querySelectorAll('button, input, textarea');
 
     elements.forEach(el => el.classList.remove('tab-is-active'))
-    tabIsActive = false;
+    state.tabIsActive = false;
 }
+
 
 
 function generateId(prefix) {
@@ -259,8 +278,8 @@ function scrollIn(elem, dir) {
     }
     if (elem.scrollTo) {
         elem.scrollTo(opts);
-    } else {
-        elem.scrollTop = top; //Edge
+    } else { //Edge
+        elem.scrollTop = top; 
         elem.scrollLeft = left; 
     }
 }
