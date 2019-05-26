@@ -78,30 +78,6 @@ main {
 .card:last-child {
     margin-bottom: 3px;
 }
-/* 
-.del-item {
-   
-}
-
-.del-item:focus,
-.card:hover .del-item{
-    background: url("icons/trash.svg");
-    opacity: 0.5;
-    
-    background-size: 14px;
-    width: 14px;
-    height: 14px;
-    padding: 0;
-    margin-left: 5px;
-    
-    position: relative;
-    top: 4px;
-}
-
-.del-item:focus,
-.del-item:hover {
-    opacity: 1 !important;
-} */
 
 .card-on-drag {
     transform: rotate(5deg);
@@ -276,19 +252,3 @@ input:not(.tab-is-active) {
     display: none;
 }
 
-
-
-.icon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
-}
-
-.icon-add-card {
-    font-size: 3em;
-    color: red;
-    opacity: .6;
-}
