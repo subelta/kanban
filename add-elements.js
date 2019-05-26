@@ -2,6 +2,7 @@
 
 const MAXLEN_CARD_INPUT = 2000;
 const MAXLEN_HEADER_INPUT = 500;
+const DEFAULT_INPUT_CARD_HEIGHT = "48px";
 
 document.addEventListener("click", e => {
     let clicked = e.target;
@@ -26,7 +27,7 @@ document.addEventListener("click", e => {
 document.addEventListener("input", e => { 
     if (e.target.classList.contains("input-card")) {
         let inp = e.target;
-        inp.style.height = "inherit";
+        inp.style.height = DEFAULT_INPUT_CARD_HEIGHT;
 
         inp.style.height = inp.scrollHeight + "px";
     }
@@ -57,9 +58,9 @@ document.addEventListener("keydown", e => {
 
 function turnOnCardInput(clicked) {
     let footer = clicked.parentElement;
-    let inputSection = footer.querySelector(".input-section");
+    let inputCardForm = footer.querySelector(".input-card-form");
 
-    inputSection.classList.remove("invisible");
+    inputCardForm.classList.remove("invisible");
     clicked.classList.add("invisible");
     console.log("card input now visible");
 }
@@ -69,11 +70,11 @@ function turnOffCardInput(clicked) {
     let footer = clicked.parentElement
                         .parentElement
                         .parentElement;
-    let inputSection = footer.querySelector(".input-section");
+    let inputCardForm = footer.querySelector(".input-card-form");
     let addCard = footer.querySelector(".add-card");
     
     addCard.classList.remove("invisible");
-    inputSection.classList.add("invisible");
+    inputCardForm.classList.add("invisible");
     console.log("card input now invisible");
 }
 
@@ -98,14 +99,14 @@ function createCard(clicked, e) {
         console.log("card created!");
     }
     inputCard.value = '';
-    inputCard.style.height = "inherit";
+    inputCard.style.height =  DEFAULT_INPUT_CARD_HEIGHT;
 }
 
 
 function addColumnInp(clicked) {
     let id = generateId("inp-col-head-");
     const colMarkup = `
-        <form class="input-section">
+        <form class="input-card-form">
             <label for=${id} class="sr-only"> <!--Доступность-->
                 Введите название колонки 
             </label>
@@ -146,15 +147,15 @@ function deleteColumnInp(clicked) {
 function generateColumn(clicked, e) {
     e.preventDefault();
     
-    let inputSection = clicked.parentElement.parentElement;
-    let column = inputSection.parentElement;
+    let inputCardForm = clicked.parentElement.parentElement;
+    let column = inputCardForm.parentElement;
     let id = generateId("inp-card-");
-    const heading = inputSection.querySelector(".input-column").value;
+    const heading = inputCardForm.querySelector(".input-column").value;
 
     if (!heading) {
         return;
     }
-    inputSection.remove();
+    inputCardForm.remove();
     
     const fullColMarkup = `
         <header>
@@ -162,7 +163,7 @@ function generateColumn(clicked, e) {
         </header>
         <ul class="cards-list"></ul>
         <footer>
-            <form class="input-section invisible">
+            <form class="input-card-form invisible">
                 <label for=${id} class="sr-only"> <!--Доступность-->
                     Введите название карточки
                 </label>

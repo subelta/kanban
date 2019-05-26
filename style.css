@@ -43,7 +43,6 @@ main {
     /* font-size: 0.85rem; */
     font-size: 13px;
     margin: 8px 12px 13px;
-    /* background-color: #DFE3E6; */
 }
 
 .cards-list {
@@ -62,7 +61,6 @@ main {
 }
 
 .card {
-    /* overflow-x: hidden; */
     word-wrap: break-word;
     background-color: white;
     padding: 8px 12px;
@@ -93,9 +91,9 @@ main {
 
 
 .controls {
+    margin-top: 8px;
     display: flex;
     justify-content: space-between;
-    /* padding-bottom: 7px; */
 }
 
 button {
@@ -126,6 +124,7 @@ button {
     top: 3px;
     right: 6px;
 }
+
 /* .add-card::before, 
 .add-column::before {
     content: url(icons/plus.svg);
@@ -146,7 +145,7 @@ button {
     margin-top: 3px;
 }
 
-.input-section {
+.input-card-form {
     padding: 4px 12px 12px;
 }
 
@@ -164,7 +163,8 @@ button {
 .input-card,
 .input-column {
     font-family: 'Montserrat', sans-serif;
-
+    font-size: 13px;
+    
     box-sizing: border-box;
     padding: 8px 12px;
     width: 100%;
@@ -176,16 +176,19 @@ button {
 
 ::placeholder {
     color: #B8B9BB;
+    
 }
 
 .input-card {
+    display: block;
+    height: 48px;
     max-height: 300px;
     resize: none;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
 }
 
 .input-column {
-    margin: 7px 0 8px;
+    margin-top: 7px;
 }
 
 
