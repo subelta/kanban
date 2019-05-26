@@ -225,7 +225,6 @@ function handleEnterKey(e) {
         const btns = e.target
                       .parentElement
                       .querySelectorAll(buttonsCl[0] + "," + buttonsCl[1]);
-        // console.log(btns)
         btns[0].click();
     }
 }
