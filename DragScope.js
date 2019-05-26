@@ -344,10 +344,10 @@ class DragScope {
                 scrollScope.scrollLeft += 10;
                 break;
             case "up":
-                scrollScope.scrollTop -= 10;
+                scrollScope.scrollTop -= 6;
                 break;
             case "down":
-                scrollScope.scrollTop += 10;
+                scrollScope.scrollTop += 6;
                 break;
         }
     }
