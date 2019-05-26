@@ -14,10 +14,10 @@ class ExtendedScope extends DragScope {
             currTarget: undefined
         }
 
-        this.scrollColumn = {
-            interval: undefined,
-            currTarget: undefined
-        }
+        // this.scrollColumn = {
+        //     interval: undefined,
+        //     currTarget: undefined
+        // }
 
         this.customScroll = this.customScroll.bind(this);
         document.addEventListener("mousemove", this.customScroll);
@@ -36,17 +36,17 @@ class ExtendedScope extends DragScope {
             this.scrollMain.target = mainScroll.currTarg;
         }
 
-        let columnScroll = this.manageScroll(
-            this.scrollColumn.interval, 
-            e, 
-            this.scrollColumn.target, 
-            this.extDropFieldClass, 
-            "y"
-        );
-        if (columnScroll) {
-            this.scrollColumn.interval = columnScroll.interval;
-            this.scrollColumn.target = columnScroll.currTarg;
-        }
+        // let columnScroll = this.manageScroll(
+        //     this.scrollColumn.interval, 
+        //     e, 
+        //     this.scrollColumn.target, 
+        //     this.extDropFieldClass, 
+        //     "y"
+        // );
+        // if (columnScroll) {
+        //     this.scrollColumn.interval = columnScroll.interval;
+        //     this.scrollColumn.target = columnScroll.currTarg;
+        // }
     }
 }
 
