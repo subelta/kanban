@@ -3,6 +3,7 @@
 const MAXLEN_CARD_INPUT = 2000;
 const MAXLEN_HEADER_INPUT = 500;
 const DEFAULT_INPUT_CARD_HEIGHT = "48px";
+var tabIsActive = false;
 
 document.addEventListener("click", e => {
     let clicked = e.target;
@@ -20,6 +21,24 @@ document.addEventListener("click", e => {
             buttons[btn](clicked, e);
         }
     }
+
+    if (tabIsActive) {
+        disableTab();
+    }
+});
+
+
+document.addEventListener("keydown", e => {
+    const keys = {
+        "13": handleEnterKey,
+        "9": handleTabKey 
+    }
+    
+    for (let key in keys) {
+        if (e.keyCode === +key) {
+            keys[key](e, "on");
+        }
+    }
 });
 
 
@@ -30,27 +49,6 @@ document.addEventListener("input", e => {
         inp.style.height = DEFAULT_INPUT_CARD_HEIGHT;
 
         inp.style.height = inp.scrollHeight + "px";
-    }
-});
-
-
-//Клавиша Enter для полей ввода
-document.addEventListener("keydown", e => {
-    const inputsCl = ["input-card", "input-column"];
-    const buttonsCl = [".confirm-add-card", ".confirm-add-column"];
-
-    if (e.keyCode !== 13) { 
-        return;
-    }
-
-    const t = e.target.classList;
-    if (t.contains(inputsCl[0]) || t.contains(inputsCl[1])) {
-        e.preventDefault();
-        const btns = e.target
-                      .parentElement
-                      .querySelectorAll(`${ buttonsCl[0] }, ${ buttonsCl[1] }`);
-        // console.log(btns)
-        btns[0].click();
     }
 });
 
@@ -66,7 +64,9 @@ function turnOnCardInput(clicked) {
 }
 
 
-function turnOffCardInput(clicked) {
+function turnOffCardInput(clicked, e) {
+    e.preventDefault();
+
     let footer = clicked.parentElement
                         .parentElement
                         .parentElement;
@@ -119,7 +119,9 @@ function addColumnInp(clicked) {
                 maxlength="${MAXLEN_HEADER_INPUT}">
             <section class="controls">
                 <button class="confirm-add-column">Добавить колонку</button>
-                <span class="discard-add-column"></span>
+                <button class="discard-add-column">
+                    <span  class="sr-only">Убрать окно ввода колонки</span>
+                </button>
             </section>
         </form>
     `
@@ -135,7 +137,9 @@ function addColumnInp(clicked) {
 }
 
 
-function deleteColumnInp(clicked) {
+function deleteColumnInp(clicked, e) {
+    e.preventDefault();
+    
     clicked.parentElement
            .parentElement
            .parentElement
@@ -176,7 +180,9 @@ function generateColumn(clicked, e) {
                 ></textarea>
                 <section class="controls">
                     <button class="confirm-add-card">Добавить карточку</button>
-                    <span class="discard-add-card"></span>
+                    <button class="discard-add-card">
+                        <span  class="sr-only">Убрать окно ввода карточки</span>
+                    </button>
                 </section>
             </form>
             <button class="add-card">
@@ -188,6 +194,38 @@ function generateColumn(clicked, e) {
 
     column.innerHTML = fullColMarkup;
     console.log("column markup generated");
+}
+
+
+function handleEnterKey(e) {
+    const inputsCl = ["input-card", "input-column"];
+    const buttonsCl = [".confirm-add-card", ".confirm-add-column"];
+
+    const t = e.target.classList;
+    if (t.contains(inputsCl[0]) || t.contains(inputsCl[1])) {
+        e.preventDefault();
+        const btns = e.target
+                      .parentElement
+                      .querySelectorAll(buttonsCl[0] + "," + buttonsCl[1]);
+        // console.log(btns)
+        btns[0].click();
+    }
+}
+
+
+function handleTabKey() {
+    const elements = document.querySelectorAll('button, input, textarea');
+
+    elements.forEach(el => el.classList.add('tab-is-active'))
+    tabIsActive = true;
+}
+
+
+function disableTab() {
+    const elements = document.querySelectorAll('button, input, textarea');
+
+    elements.forEach(el => el.classList.remove('tab-is-active'))
+    tabIsActive = false;
 }
 
 
