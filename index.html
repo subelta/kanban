@@ -17,7 +17,7 @@
             </header>
             <ul class="cards-list">
                 <li class="card">Пройти курс по React</li>
-                <li class="card">Отметить День Рождения</li>
+                <li class="card">Отметить день рождения</li>
                 <li class="card">Записаться на курсы английского языка,  чтобы уехать жить в Лондон</li>
                 <li class="card">Сделать бекенд своего сайта на node.js</li>
                 <li class="card">Собрать портфолио</li>
@@ -42,15 +42,19 @@
                         maxlength="2000"
                     ></textarea>
                     <section class="controls">
-                        <button class="confirm-add-card">Добавить карточку</button>
+                        <button class="confirm-add-card">
+                            Добавить карточку
+                        </button>
                         <span id="del-1" class="discard-add-card"></span>
                     </section>
                 </form>
-                <button class="add-card">Добавить еще одну карточку</button>
+                <button class="add-card">
+                    <span class="add-icon"></span>
+                    Добавить еще одну карточку
+                </button>
             </footer>
         </article>
-
-
+        
         <article class="column">
             <header>
                 <h1 class="column-header">План на день</h1>
@@ -58,7 +62,7 @@
             <ul class="cards-list">
                 <li class="card">Записаться на курс по React</li>
                 <li class="card">Забронировать тир на субботу</li>
-                <li class="card">накидать тем для статей в блог</li>
+                <li class="card">Накидать тем для статей в блог</li>
             </ul>
             <footer>
                 <form class="input-section invisible">
@@ -78,11 +82,17 @@
                     </section>
                 </form>
                 
-                <button class="add-card">Добавить еще одну карточку</button>
+                <button class="add-card">
+                    <span class="add-icon"></span>
+                    Добавить еще одну карточку
+                </button>
             </footer>
         </article>
 
-        <button class="add-column">Добавить еще одну колонку</button>
+        <button class="add-column">
+            <span class="add-icon"></span>
+            Добавить еще одну колонку
+        </button>
     </main>
 
     <script src="add-elements.js"></script>
@@ -108,3 +118,19 @@
     </script>
 </body>
 </html>
+
+
+<!-- <svg class="icon icon-add-card"> -->
+        <!-- <use xlink:href="#icon-add-card"></use> -->
+    <!-- </svg> -->
+<!--  -->
+<!-- 
+
+<svg style="display:none;">
+    <symbol id="icon-add-card" viewBox="0 0 53.7 53.7">
+        <title>Plus card icon</title>
+        <path d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216
+        v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z" />
+    </symbol>
+</svg>
+ -->

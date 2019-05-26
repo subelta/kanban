@@ -91,7 +91,6 @@ class DragScope {
         this.elemObject.el.style.left = e.pageX - this.elemObject.shift.x + 'px'; 
         this.elemObject.el.style.top = e.pageY - this.elemObject.shift.y + 'px';
         unFocus();
-        // return false;
     }
 
 
@@ -101,7 +100,6 @@ class DragScope {
         }
         this.dropPlace = false;
         this.elemObject = {};
-        // return false;
     }
 
 
@@ -135,7 +133,6 @@ class DragScope {
                 dropZone.appendChild(this.dropPlace);
             }
         }
-        // return false;
     }
 
     

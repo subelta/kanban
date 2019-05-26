@@ -40,7 +40,8 @@ main {
 
 .column-header {
     word-wrap: break-word;
-    font-size: 0.85rem;
+    /* font-size: 0.85rem; */
+    font-size: 13px;
     margin: 8px 12px 13px;
     /* background-color: #DFE3E6; */
 }
@@ -114,13 +115,24 @@ button {
     border: none;
 }
 
-.add-card::before, 
+.add-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url(icons/plus.svg) no-repeat center;
+    background-size: 15px;
+
+    position: relative;
+    top: 3px;
+    right: 6px;
+}
+/* .add-card::before, 
 .add-column::before {
     content: url(icons/plus.svg);
     position: relative;
     top: 3px;
     right: 8px;
-}
+} */
 
 .add-card:hover,
 .add-column:hover {
@@ -199,24 +211,29 @@ button {
 
 .discard-add-card,
 .discard-add-column {
-    content: url(icons/x.svg);
+    display: inline-block;
     align-self: center;
     padding: 5px; 
+
+    background: url(icons/x.svg) no-repeat center; 
+    width: 15px;
+    height: 15px;
+    background-size: 15px;
+    
     transition: all 0.1s;
 }
 
 .discard-add-card:hover,
 .discard-add-column:hover {
-    content: url(icons/x-white.svg);
+    background: url(icons/x-black.svg) no-repeat center;
     border-radius: 3px;
-    background-color: #ff6c6c;
 }
 
 .add-column {
     width: 272px;
     height: 43px;
     margin: 0px 6px;
-    padding-left: 20px;
+    padding-left: 18px;
     text-align: left;
 
     flex: 0 0 auto;
@@ -225,4 +242,21 @@ button {
 
 .invisible {
     display: none;
+}
+
+
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.icon-add-card {
+    font-size: 3em;
+    color: red;
+    opacity: .6;
 }

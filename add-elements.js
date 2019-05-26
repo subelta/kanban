@@ -94,12 +94,7 @@ function createCard(clicked, e) {
         card.textContent = cardText;
 
         cardsList.appendChild(card);
-
-        cardsList.scrollTo({
-            left: 0,
-            top: cardsList.scrollHeight,
-            behavior: 'smooth'
-        });
+        scrollIn(cardsList, "down");
         console.log("card created!");
     }
     inputCard.value = '';
@@ -134,11 +129,7 @@ function addColumnInp(clicked) {
     const main = clicked.parentElement;
     main.insertBefore(column, clicked);
 
-    main.scrollTo({
-        left: main.scrollWidth,
-        top: 0,
-        behavior: 'smooth'
-    });
+    scrollIn(main, "right");
     console.log("column input created");
 }
 
@@ -187,7 +178,10 @@ function generateColumn(clicked, e) {
                     <span class="discard-add-card"></span>
                 </section>
             </form>
-            <button class="add-card">Добавить еще одну карточку</button>
+            <button class="add-card">
+                <span class="add-icon"></span>
+                Добавить еще одну карточку
+            </button>
         </footer>
     `
 
@@ -207,4 +201,27 @@ function generateId(prefix) {
     } while(check)
 
     return id;
+}
+
+
+function scrollIn(elem, dir) {
+    let left = 0;
+    let top = 0;
+    if (dir === "down") {
+        top = elem.scrollHeight;
+    } else {
+        left = elem.scrollWidth;
+    }
+
+    let opts = {
+        left: left,
+        top: top,
+        behavior: 'smooth'
+    }
+    if (elem.scrollTo) {
+        elem.scrollTo(opts);
+    } else {
+        elem.scrollTop = top; //Edge
+        elem.scrollLeft = left; 
+    }
 }
