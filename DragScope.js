@@ -22,7 +22,7 @@ class DragScope {
         this.onMouseOver = this.onMouseOver.bind(this);
         this.defaultScroll = this.defaultScroll.bind(this);
 
-
+        //methods
         this.saveSizes = this.saveSizes.bind(this);
         this.setDropPlace = this.setDropPlace.bind(this);
         this.startDrag = this.startDrag.bind(this);
@@ -106,10 +106,8 @@ class DragScope {
 
 
     onMouseOver(e) {
-
         const el = this.elemObject.el;
         const target = e.target;  
-      
 
         if ((!el) || (target == this.dropPlace)) {
             return;
@@ -142,7 +140,6 @@ class DragScope {
 
 
     defaultScroll(e) {  
-
         let state = this.manageScroll(
             this.defScrollState.interval, 
             e, 
@@ -265,9 +262,6 @@ class DragScope {
 
         if (interval) {
             if (!this.scrollArea(e, currTarg, dir) || !this.elemObject.isDragged) {
-                // console.log(`targ: ${currTarg.tagName}`);
-                // console.log(`area: ${this.scrollArea(e, currTarg, dir)}`);
-                // console.log(`stop: ${interval}`);
                 this.stopScroll(interval);
                 interval = undefined;
             }
@@ -279,7 +273,6 @@ class DragScope {
     scrollArea(e, el, axis) {
         let elStyle = window.getComputedStyle(el);
         const part = 10;
-        
       
         const coords = {
             top: el.getBoundingClientRect().top,
