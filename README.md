@@ -3,7 +3,7 @@ Regular kanban with drag'n'drop etc. Pure HTML + CSS + JS
 
 
 ## Тестовое задание ВК 2019
-
+[Макет](https://www.figma.com/file/GRQn8carvWJVsKJeWmIX6Pbr/Kanban?node-id=0%3A1)
 ### UI:
 В соответствии с требованиями реализовал возможности:
 
