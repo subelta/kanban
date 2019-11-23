@@ -109,7 +109,7 @@ input:not(.tab-is-active) {
     font-size: 13px;
     line-height: 19px;
 
-    padding: none;
+    padding: 0;
     background-color: #DFE3E6;
     border-radius: 3px;
     color: #6B808C;
