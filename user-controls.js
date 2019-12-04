@@ -255,7 +255,7 @@ function generateId(prefix) {
         const max = 99999;
         id = prefix + Math.floor(Math.random() * (max - min) + min);
         check = document.querySelector("#" + id);
-    } while(check)
+    } while(check);
 
     return id;
 }
